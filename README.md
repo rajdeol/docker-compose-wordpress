@@ -1,6 +1,6 @@
 # wordpress plugin development with docker-compose
 
-To use this repository you need to install dicker and docker-compose on your machine.
+To use this repository you need to install docker and docker-compose on your machine.
 
 Clone the repository to your machine
 ```shell
