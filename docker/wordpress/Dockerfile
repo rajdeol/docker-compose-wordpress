@@ -1,0 +1,2 @@
+#wordpress
+FROM wordpress:latest

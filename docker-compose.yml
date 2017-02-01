@@ -1,0 +1,24 @@
+## wordpress container.
+# wordpress MYSQL database
+database:
+  build: docker/mysql
+  # so that I can access it within 
+  # mysqlworkbench on my machine
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_USER=wordpress
+    - MYSQL_PASSWORD=wordpress
+
+wordpress:
+    links:
+    - database:database
+    build: docker/wordpress
+    # I dont want to block my port 80 as 
+    # I run other containers which are forwarded to port 80
+    ports:
+       - "8000:80"
+    restart: always
+    environment:
+       WORDPRESS_DB_HOST: database:3306
+       WORDPRESS_DB_PASSWORD: wordpress
