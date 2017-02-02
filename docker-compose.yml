@@ -12,6 +12,7 @@ database:
 
 wordpress:
     links:
+    # to access database container
     - database:database
     build: docker/wordpress
     # I dont want to block my port 80 as 
@@ -19,6 +20,9 @@ wordpress:
     ports:
        - "8000:80"
     restart: always
+    volumes:
+      # So that my plugin development in wp-content maps to container wp-content
+      - ./wp-content:/var/www/html/wp-content
     environment:
        WORDPRESS_DB_HOST: database:3306
        WORDPRESS_DB_PASSWORD: wordpress
