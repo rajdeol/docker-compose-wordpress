@@ -14,7 +14,7 @@ get into the folder and run :
 This will add uid of your current session user to UID variable which we are using to assign proper permissions in build container.
 This will help you to edit your files on mounted volume by using your favorite editor on your host.
 
-get into the folder and run :
+now run :
 ```shell
   docker-compose build
 ```
@@ -41,4 +41,4 @@ If you want a fresh install of wordpress everytime when you run your container t
 
 line from docker/mysql/Dockerfile.
 
-The wp-content folder is mounted to thw wordpress wp-content folder. You can create your plugins or theme and rum them straight into your container.
+The wp-content folder is mounted to the wordpress wp-content folder. You can create your plugin or theme and run them straight into your container.
