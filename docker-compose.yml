@@ -26,4 +26,5 @@ wordpress:
     environment:
        WORDPRESS_DB_HOST: database:3306
        WORDPRESS_DB_PASSWORD: wordpress
-       USER_DIR: /var/www/html/wp-content
+       LOCAL_USER_ID: $UID
+       LOCAL_USER_NAME: $USER

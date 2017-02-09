@@ -1,22 +1,12 @@
 #!/bin/bash
 
-setuser() {
-  if [ -z "$1" ]; then
-    echo "Usage: $0 <path>"
-    return
-  fi
-  CURRENT_UID=`id -u`
-  DEST_UID=`stat -c "%u" $1`
-  if [ $CURRENT_UID = $DEST_UID ]; then
-    return
-  fi
-  DEST_GID=`stat -c "%g" $1`
-  if [ -e /home/$DEST_UID ]; then
-    return
-  fi
-  groupadd -g $DEST_GID $DEST_GID
-  useradd -u $DEST_UID -g $DEST_GID $DEST_UID
-  mkdir -p /home/$DEST_UID
-  chown $DEST_UID:$DEST_GID /home/$DEST_UID
-}
-setuser $1
+USER_ID=${LOCAL_USER_ID:-9001}
+USER_NAME=${LOCAL_USER_NAME:-hostuser}
+
+echo "Starting with UID : $USER_ID and UNAME : $USER_NAME"
+echo "create $USER_NAME group if it doesnot exists"
+getent group $USER_NAME || groupadd $USER_NAME
+echo "create Adding User to group"
+id -u $USER_NAME || useradd --shell /bin/bash -u $USER_ID -o -c "" -G $USER_NAME -m $USER_NAME
+setfacl -R -m g:$USER_NAME:rwX /var/www/html/wp-content 
+#export HOME=/home/user
