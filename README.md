@@ -1,5 +1,8 @@
 # wordpress plugin development with docker-compose
 
+Read http://blog.whomeninja.in/wordpress-development-with-docker-compose/
+for full detail of this repository.
+
 To use this repository you need to install docker and docker-compose on your machine.
 
 Clone the repository to your machine
